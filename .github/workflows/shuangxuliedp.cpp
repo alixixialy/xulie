@@ -29,7 +29,7 @@ int main(){
 	for(j = 1;j <= mr;j++){
 		A[j][0] = -gap*j;
 	}
-	int sc,rc,rs;  // sc是s在前，rc是r在前，rs是字符刚好对着 
+	int sc,rc,rs;  // sc鏄痵鍦ㄥ墠锛宺c鏄痳鍦ㄥ墠锛宺s鏄瓧绗﹀垰濂藉鐫� 
 	for(i = 1;i <= ms;i++){
 		for(j = 1;j <= mr;j++){
 			rs =  A[j-1][i-1] + p(s[i-1],r[j-1]);
