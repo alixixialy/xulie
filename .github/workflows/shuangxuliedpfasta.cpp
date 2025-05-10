@@ -36,7 +36,7 @@ vector<FastaRecord> read_fasta(const string& filename) {
     }
     
     if (records.size() < 2) {
-        throw runtime_error("ÐèÒªÖÁÉÙÁ½¸öÐòÁÐ½øÐÐ±È¶Ô");
+        throw runtime_error("éœ€è¦è‡³å°‘ä¸¤ä¸ªåºåˆ—è¿›è¡Œæ¯”å¯¹");
     }
     
     return records;
@@ -91,13 +91,13 @@ int main() {
             for (size_t i = 0; i < seq.size(); i += 80) {
                 out << seq.substr(i, 80) << "\n";
             }
-        }; // ÕâÀïÌí¼Ó·ÖºÅ
+        }; // è¿™é‡Œæ·»åŠ åˆ†å·
         
         write_fasta(records[0].header, s1);
         write_fasta(records[1].header, r1);
         
-    } catch (const exception& e) { // ÐÞ¸´try¿é±ÕºÏ
-        cerr << "´íÎó: " << e.what() << endl;
+    } catch (const exception& e) { // ä¿®å¤tryå—é—­åˆ
+        cerr << "é”™è¯¯: " << e.what() << endl;
         return 1;
     }
     return 0;
