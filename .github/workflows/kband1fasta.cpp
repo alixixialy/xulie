@@ -7,13 +7,13 @@ using namespace std;
 #define egap 1
 #define K 3
 
-// FASTA¼ÇÂ¼½á¹¹Ìå
+// FASTAè®°å½•ç»“æ„ä½“
 struct FastaRecord {
     string header;
     string sequence;
 };
 
-// ¶ÁÈ¡FASTAÎÄ¼şº¯Êı
+// è¯»å–FASTAæ–‡ä»¶å‡½æ•°
 vector<FastaRecord> read_fasta(const string& filename) {
     ifstream file(filename);
     vector<FastaRecord> records;
@@ -41,7 +41,7 @@ vector<FastaRecord> read_fasta(const string& filename) {
     }
     
     if (records.size() < 2) {
-        throw runtime_error("ĞèÒªÖÁÉÙÁ½¸öĞòÁĞ½øĞĞ±È¶Ô");
+        throw runtime_error("éœ€è¦è‡³å°‘ä¸¤ä¸ªåºåˆ—è¿›è¡Œæ¯”å¯¹");
     }
     
     return records;
@@ -53,12 +53,12 @@ int p(char s, char r) {
 
 int main() {
     try {
-        // ¶ÁÈ¡ÊäÈëÎÄ¼ş
+        // è¯»å–è¾“å…¥æ–‡ä»¶
         auto records = read_fasta("input.fasta");
         string s = records[0].sequence;
         string r = records[1].sequence;
 
-        // Ô­Ê¼±È¶ÔËã·¨±£³Ö²»±ä
+        // åŸå§‹æ¯”å¯¹ç®—æ³•ä¿æŒä¸å˜
         int ms = s.size(), mr = r.size();
         vector<vector<int>> A(mr+1, vector<int>(ms+1, -0x3f3f3f));
         vector<vector<int>> B(mr+1, vector<int>(ms+1, -0x3f3f3f));
@@ -85,7 +85,7 @@ int main() {
 
         int mx = max({A[mr][ms], B[mr][ms], C[mr][ms]});
         
-        // »ØËİÂ·¾¶
+        // å›æº¯è·¯å¾„
         int i = ms, j = mr;
         string s1, r1;
         while (i > 0 || j > 0) {
@@ -99,7 +99,7 @@ int main() {
                 s1 += '-';
                 r1 += r[--j];
             } else {
-                throw runtime_error("»ØËİÂ·¾¶³¬³ök-band·¶Î§");
+                throw runtime_error("å›æº¯è·¯å¾„è¶…å‡ºk-bandèŒƒå›´");
             }
             mx = max({A[j][i], B[j][i], C[j][i]});
         }
@@ -107,7 +107,7 @@ int main() {
         reverse(s1.begin(), s1.end());
         reverse(r1.begin(), r1.end());
 
-        // Ğ´ÈëFASTA¸ñÊ½ÎÄ¼ş
+        // å†™å…¥FASTAæ ¼å¼æ–‡ä»¶
         ofstream out("output.fasta");
         auto write_aligned = [&](const string& header, const string& seq) {
             out << ">" << header << "_aligned\n";
@@ -120,7 +120,7 @@ int main() {
         write_aligned(records[1].header, r1);
 
     } catch (const exception& e) {
-        cerr << "´íÎó: " << e.what() << endl;
+        cerr << "é”™è¯¯: " << e.what() << endl;
         return 1;
     }
     return 0;
