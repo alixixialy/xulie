@@ -10,4 +10,4 @@ $(TARGET): $(OBJECTS)
     $(CC) $(CFLAGS) -o $@ $^  # 必须用 Tab 缩进
 
 clean:
-    rm -f $(OBJECTS) $(TARGET)  # 同样需要 Tab 缩进
+    rm -f $(OBJECTS) $(TARGET)  # 必须用 Tab 缩进
